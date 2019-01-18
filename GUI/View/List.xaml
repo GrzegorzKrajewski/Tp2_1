@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="GUI.View.List"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.View"
+             xmlns:vms="clr-namespace:GUI.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" Width="490.5">
+    <UserControl.DataContext>
+        <vms:List/>
+    </UserControl.DataContext>
+
+    <Grid Margin="-109,0,-105,-10" HorizontalAlignment="Left" Width="704">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0"
+                 ItemsSource="{Binding Path = ProductsCollection}"
+                 SelectedItem="{Binding SelectedProduct}"
+
+                 DisplayMemberPath="DisplayName" Margin="0,0,316,27" SelectionChanged="ListBox_SelectionChanged" Grid.RowSpan="2" HorizontalAlignment="Center" Width="250"/>
+        <StackPanel Margin="329,0,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" Width="265">
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <Button Command="{Binding GetProducts}" Height="50">Refresh</Button>
+                <Button Command="{Binding UpdateProduct}" Height="50" Content="Update"/>
+                <Button Command="{Binding Deselect}" Height="50" Width="265">Clear</Button>
+                <Button Command="{Binding AddProduct}" Height="50" Content="Add"/>
+                <Button Background="Tomato" Command="{Binding DeleteProduct}" Height="50" Click="Button_Click" Content="Delete" Width="264"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
